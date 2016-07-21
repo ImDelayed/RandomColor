@@ -18,11 +18,13 @@ class GameScene: SKScene {
     var savedColors: [String] = []
     var colorSaved = false
     let previousSession = NSUserDefaults.standardUserDefaults()
+    let colorsButton = SKSpriteNode(imageNamed: "Options")
     
     override func didMoveToView(view: SKView) {
         randomColor()
-        saveButton.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame) + 150)
-        saveButtonShadow.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame) + 160)
+        saveButton.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame)*1.5)
+        saveButtonShadow.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame)*1.53)
+        colorsButton.position = CGPoint(x: CGRectGetMidX(self.frame)/2, y: CGRectGetMidY(self.frame)*1.9)
         saveButtonShadow.fillColor = SKColor.clearColor()
         saveButtonShadow.strokeColor = SKColor.whiteColor()
         saveButtonShadow.lineWidth = 1
@@ -32,6 +34,7 @@ class GameScene: SKScene {
         randomButtonShadow.fillColor = SKColor.clearColor()
         randomButtonShadow.strokeColor = SKColor.whiteColor()
         randomButtonShadow.lineWidth = 1
+        self.addChild(colorsButton)
         self.addChild(randomButtonShadow)
         self.addChild(randomButton)
         self.addChild(hexadecimal)
@@ -52,6 +55,20 @@ class GameScene: SKScene {
                 }
             }
             if randomButtonShadow.containsPoint(location){
+                randomButtonShadow.fillColor = SKColor(colorLiteralRed: 1.0, green: 1.0, blue: 1.0, alpha: 0.2)
+            }
+            if saveButtonShadow.containsPoint(location){
+                saveButtonShadow.fillColor = SKColor(colorLiteralRed: 1.0, green: 1.0, blue: 1.0, alpha: 0.2)
+            }
+        }
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        randomButtonShadow.fillColor = SKColor.clearColor()
+        saveButtonShadow.fillColor = SKColor.clearColor()
+        for touch in touches{
+            let location = touch.locationInNode(self)
+            if randomButtonShadow.containsPoint(location){
                 randomColor()
             }
             if saveButtonShadow.containsPoint(location){
@@ -65,7 +82,6 @@ class GameScene: SKScene {
                     print("color already saved LOL")
                 }
             }
-            
         }
     }
    

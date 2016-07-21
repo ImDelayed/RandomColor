@@ -494,6 +494,7 @@
 				FA8F4CC11D40743C00357C0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA8F4CC21D40743C00357C0B /* Build configuration list for PBXNativeTarget "Random ColorTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +503,7 @@
 				FA8F4CC41D40743C00357C0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA8F4CC51D40743C00357C0B /* Build configuration list for PBXNativeTarget "Random ColorUITests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +512,7 @@
 				FA8F4CC71D40743C00357C0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
