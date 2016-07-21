@@ -40,6 +40,8 @@ class GameScene: SKScene {
         self.addChild(hexadecimal)
         self.addChild(saveButton)
         self.addChild(saveButtonShadow)
+        self.addChild(mySavedColorsButton)
+        self.addChild(mySavedColorsButtonShadow)
         if previousSession.valueForKey("colorArr") != nil{
             savedColors = previousSession.valueForKey("colorArr") as! [String]
             print(savedColors)
@@ -86,15 +88,16 @@ class GameScene: SKScene {
     }
    
     func randomColor(){
-        let red = Float(arc4random_uniform(256))
-        let green = Float(arc4random_uniform(256))
-        let blue = Float(arc4random_uniform(256))
-        print("red: " + "\(red)")
-        print("green: " + "\(green)")
-        print("blue: " + "\(blue)")
+        let red = Float(drand48() * 255.0)
+        let green = Float(drand48() * 255.0)
+        let blue = Float(drand48() * 255.0)
+ //       print("red: " + "\(red)")
+   //     print("green: " + "\(green)")
+     //   print("blue: " + "\(blue)")
         backgroundColor = SKColor(colorLiteralRed: red/255, green: green/255, blue: blue/255, alpha: 1.0)
         hexadecimal.text = "#" + decToHex(Int(red)) + decToHex(Int(green)) + decToHex(Int(blue))
         colorSaved = false
+        goToLastColor += 1
         previousSession.setValue(red, forKey: "red")
         previousSession.setValue(green, forKey: "green")
         previousSession.setValue(blue, forKey: "blue")
