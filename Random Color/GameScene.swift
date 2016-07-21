@@ -18,9 +18,17 @@ class GameScene: SKScene {
     var savedColors: [String] = []
     var colorSaved = false
     let previousSession = NSUserDefaults.standardUserDefaults()
+    var goToLastColor = 1
+    let mySavedColorsButton = SKLabelNode(text: "My Colors")
+    let mySavedColorsButtonShadow = SKShapeNode(rectOfSize: CGSize(width: 150, height: 50))
     
     override func didMoveToView(view: SKView) {
         randomColor()
+        mySavedColorsButton.position = CGPoint(x: CGRectGetMidX(self.frame) + 125, y: CGRectGetMidY(self.frame) + 320)
+        mySavedColorsButtonShadow.position = CGPoint(x: CGRectGetMidX(self.frame) + 125, y: CGRectGetMidY(self.frame) + 332)
+        mySavedColorsButtonShadow.fillColor = SKColor.clearColor()
+        mySavedColorsButtonShadow.strokeColor = SKColor.whiteColor()
+        mySavedColorsButtonShadow.lineWidth = 1
         saveButton.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame) + 150)
         saveButtonShadow.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame) + 160)
         saveButtonShadow.fillColor = SKColor.clearColor()
@@ -37,6 +45,8 @@ class GameScene: SKScene {
         self.addChild(hexadecimal)
         self.addChild(saveButton)
         self.addChild(saveButtonShadow)
+        self.addChild(mySavedColorsButton)
+        self.addChild(mySavedColorsButtonShadow)
         if previousSession.valueForKey("colorArr") != nil{
             savedColors = previousSession.valueForKey("colorArr") as! [String]
             print(savedColors)
@@ -73,12 +83,13 @@ class GameScene: SKScene {
         let red = Float(drand48() * 255.0)
         let green = Float(drand48() * 255.0)
         let blue = Float(drand48() * 255.0)
-        print("red: " + "\(red)")
-        print("green: " + "\(green)")
-        print("blue: " + "\(blue)")
+ //       print("red: " + "\(red)")
+   //     print("green: " + "\(green)")
+     //   print("blue: " + "\(blue)")
         backgroundColor = SKColor(colorLiteralRed: red/255, green: green/255, blue: blue/255, alpha: 1.0)
         hexadecimal.text = "#" + decToHex(Int(red)) + decToHex(Int(green)) + decToHex(Int(blue))
         colorSaved = false
+        goToLastColor += 1
         previousSession.setValue(red, forKey: "red")
         previousSession.setValue(green, forKey: "green")
         previousSession.setValue(blue, forKey: "blue")
