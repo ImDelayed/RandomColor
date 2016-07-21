@@ -70,9 +70,9 @@ class GameScene: SKScene {
     }
    
     func randomColor(){
-        let red = Float(drand48() * 255.0)
-        let green = Float(drand48() * 255.0)
-        let blue = Float(drand48() * 255.0)
+        let red = Float(arc4random_uniform(256))
+        let green = Float(arc4random_uniform(256))
+        let blue = Float(arc4random_uniform(256))
         print("red: " + "\(red)")
         print("green: " + "\(green)")
         print("blue: " + "\(blue)")
